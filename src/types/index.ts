@@ -26,8 +26,19 @@ export const formSchema = z.object({
 });
 
 export type RequestFormValues = z.infer<typeof formSchema>;
-export type ApiResponse<T> = {
+// types.ts
+
+export interface ApiResponseData {
+  // Defina a estrutura de dados conforme necessário, ou deixe como genérico.
+  [key: string]: any;
+}
+
+export interface ApiResponse<T = ApiResponseData> {
   success: boolean;
   data?: T;
   error?: string;
-};
+  status?: number;
+  headers?: Record<string, string>;
+  duration?: number;
+  size?: number;
+}

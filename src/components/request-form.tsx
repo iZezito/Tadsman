@@ -61,15 +61,22 @@ const RequestForm = () => {
   });
 
   const onSubmit = async (data: RequestFormValues) => {
+    setLoading(true);
     try {
-      setLoading(true);
       const response = await sendRequest(data);
       setResponse(response);
-    } catch (error) {
-      setResponse({ success: false, error: (error as Error).message });
     } finally {
       setLoading(false);
     }
+    // try {
+    //   setLoading(true);
+    //   const response = await sendRequest(data);
+    //   setResponse(response);
+    // } catch (error) {
+    //   setResponse({ success: false, error: (error as Error).message });
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   const bodyType = watch('bodyType');

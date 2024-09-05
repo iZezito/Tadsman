@@ -37,9 +37,11 @@ const ResponseCard = () => {
             ) : (
               <>
               <div className="flex gap-4">
-          <Badge color="green">200 OK</Badge>
-          <span className="text-sm">1.23s</span>
-          <span className="text-sm">1.23 KB</span>
+          <Badge color={
+            response?.error ? "green" : "red"
+          }>{response?.status}</Badge>
+          <span className="text-sm">{response?.duration}</span>
+          <span className="text-sm">{response?.size}</span>
         </div>
         <div className="grid gap-4">
           <Tabs defaultValue="response">
@@ -52,7 +54,7 @@ const ResponseCard = () => {
             <Card className="max-w-[550px]">
                   <CardContent>
                       <Separator />
-                      {response?.data ? (<JsonViewer src={response?.data} />) : ( 
+                      {response?.success ? (<JsonViewer src={response?.data} />) : ( 
                         <JsonViewer src={{error: response?.error}} />
                       )}
                       {/* {<JsonViewer src={response?.data} />} */}
